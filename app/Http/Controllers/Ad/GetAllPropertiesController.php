@@ -2,31 +2,28 @@
 
 namespace App\Http\Controllers\Ad;
 
+use App\Enums\HttpStatus;
 use App\Http\Controllers\Controller;
-use App\HttpStatusTrait;
 use App\Services\Contracts\AdServiceContract;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class GetAllPropertiesController extends Controller
 {
-    use HttpStatusTrait;
-
-    public function __construct(private AdServiceContract $adService)
+    public function __construct(private readonly AdServiceContract $adService)
     {
     }
 
     public function __invoke(): JsonResponse
     {
         try {
-            $ads = $this->adService->getAllAds();
+            $ads = $this->adService->getAdsFromCache();
 
             return response()->json([
-                'message' => 'Ad created successfully.',
+                'message' => 'Return ads successfully.',
                 'data' => $ads
-            ], self::CREATED);
+            ], HttpStatus::OK);
 
         } catch (Exception $e) {
             Log::error('Ad creation failed: ' . $e->getMessage(), [
@@ -36,9 +33,9 @@ class GetAllPropertiesController extends Controller
 
             return new JsonResponse([
                 'success' => false,
-                'message' => 'Failed to create ad',
+                'message' => 'Failed to return ads.',
                 'error' => config('app.debug') ? $e->getMessage() : null
-            ], self::SERVER_ERROR);
+            ], HttpStatus::SERVER_ERROR);
         }
     }
 }

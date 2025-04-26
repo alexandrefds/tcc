@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Repositories\Contracts\LocationRepositoryContract;
 use App\Services\Contracts\LocationServiceContract;
 
-class LocationService implements LocationServiceContract
+readonly class LocationService implements LocationServiceContract
 {
     public function __construct(private LocationRepositoryContract $locationRepository)
     {
@@ -16,10 +16,10 @@ class LocationService implements LocationServiceContract
         $this->locationRepository->store($data);
     }
 
-    public function getLocationByIds(array $ids): array
+    public function indexByPropertyIds(array $propertyIds): array
     {
         return $this->locationRepository
-            ->indexIds($ids)
+            ->indexByPropertyIds($propertyIds)
             ->toArray();
     }
 }

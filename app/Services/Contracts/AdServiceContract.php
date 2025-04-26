@@ -4,7 +4,7 @@ namespace   App\Services\Contracts;
 
 interface AdServiceContract
 {
-    public function createAd(array $data);
+    public function createAd(array $data): void;
 
-    public function getAllAds();
+    public function getAdsFromCache(): array;
 }

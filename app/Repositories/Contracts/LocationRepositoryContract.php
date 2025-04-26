@@ -8,5 +8,5 @@ interface LocationRepositoryContract
 {
     public function store(array $data): void;
 
-    public function indexIds(array $ids): Collection;
+    public function indexByPropertyIds(array $propertyIds): Collection;
 }

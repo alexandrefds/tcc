@@ -6,7 +6,7 @@ use App\Models\Property;
 use App\Repositories\Contracts\PropertyRepositoryContract;
 use Illuminate\Database\Eloquent\Collection;
 
-class PropertyRepository implements PropertyRepositoryContract
+readonly class PropertyRepository implements PropertyRepositoryContract
 {
     public function __construct(private Property $model)
     {
@@ -17,10 +17,10 @@ class PropertyRepository implements PropertyRepositoryContract
         return $this->model->create($data);
     }
 
-    public function indexByIds(array $ids): Collection
+    public function indexByPropertyIds(array $propertyIds): Collection
     {
         return $this->model
-            ->whereIn('id', $ids)
+            ->whereIn('id', $propertyIds)
             ->get();
     }
 }

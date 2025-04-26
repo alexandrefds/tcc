@@ -8,5 +8,5 @@ interface PropertyDetailsRepositoryContract
 {
     public function store(array $data): void;
 
-    public function indexByIds(array $ids): Collection;
+    public function indexByPropertyIds(array $propertyIds): Collection;
 }

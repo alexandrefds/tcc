@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Repositories\Contracts\PropertyDetailsRepositoryContract;
 use App\Services\Contracts\PropertyDetailsServiceContract;
 
-class PropertyDetailsService implements PropertyDetailsServiceContract
+readonly class PropertyDetailsService implements PropertyDetailsServiceContract
 {
     public function __construct(private PropertyDetailsRepositoryContract $propertyDetailsRepository)
     {
@@ -16,10 +16,10 @@ class PropertyDetailsService implements PropertyDetailsServiceContract
         $this->propertyDetailsRepository->store($data);
     }
 
-    public function getPropertyDetailsByIds(array $ids): array
+    public function indexByPropertyIds(array $propertyIds): array
     {
         return $this->propertyDetailsRepository
-            ->indexByIds($ids)
+            ->indexByPropertyIds($propertyIds)
             ->toArray();
     }
 }

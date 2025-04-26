@@ -8,6 +8,5 @@ use Illuminate\Database\Eloquent\Collection;
 interface PropertyRepositoryContract
 {
     public function store(array $data): Property;
-
-    public function indexByIds(array $ids): Collection;
+    public function indexByPropertyIds(array $propertyIds): Collection;
 }

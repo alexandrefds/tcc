@@ -19,10 +19,10 @@ class PropertyDetailsRepository implements PropertyDetailsRepositoryContract
         $this->model->create($data);
     }
 
-    public function indexByIds(array $ids): Collection
+    public function indexByPropertyIds(array $propertyIds): Collection
     {
         return $this->model
-            ->whereIn('property_id', $ids)
+            ->whereIn('property_id', $propertyIds)
             ->get();
     }
 }

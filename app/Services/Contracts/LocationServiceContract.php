@@ -6,5 +6,5 @@ interface LocationServiceContract
 {
     public function createLocation(array $data): void;
 
-    public function getLocationByIds(array $ids): array;
+    public function indexByPropertyIds(array $propertyIds): array;
 }

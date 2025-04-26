@@ -6,5 +6,5 @@ interface PropertyMediasServiceContract
 {
     public function createPropertyMedias(array $data): void;
 
-    public function getAllPropertyMedias(): array;
+    public function indexPropertyMedias(): array;
 }

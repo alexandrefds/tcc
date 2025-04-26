@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Repositories\Contracts\PropertyMediasRepositoryContract;
 use App\Services\Contracts\PropertyMediasServiceContract;
 
-class PropertyMediasService implements PropertyMediasServiceContract
+readonly class PropertyMediasService implements PropertyMediasServiceContract
 {
     public function __construct(
         private PropertyMediasRepositoryContract $propertyMediasRepository
@@ -18,7 +18,7 @@ class PropertyMediasService implements PropertyMediasServiceContract
         $this->propertyMediasRepository->store($data);
     }
 
-    public function getAllPropertyMedias(): array
+    public function indexPropertyMedias(): array
     {
         return $this->propertyMediasRepository
             ->index()

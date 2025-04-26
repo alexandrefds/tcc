@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Repositories\Contracts\PropertyRepositoryContract;
 use App\Services\Contracts\PropertyServiceContract;
 
-class PropertyService implements PropertyServiceContract
+readonly class PropertyService implements PropertyServiceContract
 {
     public function __construct(private PropertyRepositoryContract $propertyRepository)
     {
@@ -19,11 +19,10 @@ class PropertyService implements PropertyServiceContract
             ->store($data)
             ->toArray();
     }
-
-    public function getPropertiesByIds(array $ids): array
+    public function indexByPropertyIds(array $propertyIds): array
     {
         return $this->propertyRepository
-            ->indexByIds($ids)
+            ->indexByPropertyIds($propertyIds)
             ->toArray();
     }
 }

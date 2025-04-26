@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Ad;
 
+use App\Enums\HttpStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdCreateRequest;
-use App\HttpStatusTrait;
 use App\Services\Contracts\AdServiceContract;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Log;
 
 class CreateAdController extends Controller
 {
-    use HttpStatusTrait;
-
     public function __construct(private AdServiceContract $adService)
     {
     }
@@ -25,7 +23,7 @@ class CreateAdController extends Controller
 
             return response()->json([
                 'message' => 'Ad created successfully.'
-            ], self::CREATED);
+            ], HttpStatus::CREATED);
 
         } catch (Exception $e) {
             Log::error('Ad creation failed: ' . $e->getMessage(), [
@@ -36,9 +34,9 @@ class CreateAdController extends Controller
 
             return new JsonResponse([
                 'success' => false,
-                'message' => 'Failed to create ad',
+                'message' => 'Failed to create ad.',
                 'error' => config('app.debug') ? $e->getMessage() : null
-            ], self::SERVER_ERROR);
+            ], HttpStatus::SERVER_ERROR);
         }
     }
 }
