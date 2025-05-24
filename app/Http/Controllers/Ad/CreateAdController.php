@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Ad;
 
 use App\Enums\HttpStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdCreateRequest;
+use App\Http\Requests\Ad\AdCreateRequest;
 use App\Services\Contracts\AdServiceContract;
 use Exception;
 use Illuminate\Http\JsonResponse;

@@ -23,4 +23,11 @@ readonly class PropertyRepository implements PropertyRepositoryContract
             ->whereIn('id', $propertyIds)
             ->get();
     }
+
+    public function getById(int $id): Property
+    {
+        return $this->model
+            ->where('id', $id)
+            ->first();
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    App\Providers\AdCacheServiceProvider::class,
     App\Providers\AdServiceProvider::class,
     App\Providers\AppServiceProvider::class,
     App\Providers\LocationRepositoryProvider::class,

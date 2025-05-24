@@ -7,4 +7,6 @@ interface PropertyDetailsServiceContract
     public function createPropertyDetails(array $data): void;
 
     public function indexByPropertyIds(array $propertyIds): array;
+
+    public function getPropertyDetailsByPropertyId(int $propertyId): array;
 }

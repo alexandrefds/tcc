@@ -22,4 +22,11 @@ readonly class LocationService implements LocationServiceContract
             ->indexByPropertyIds($propertyIds)
             ->toArray();
     }
+
+    public function getLocationByPropertyId(int $propertyId): array
+    {
+        return $this->locationRepository
+            ->getById($propertyId)
+            ->toArray();
+    }
 }

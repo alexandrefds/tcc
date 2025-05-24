@@ -22,4 +22,11 @@ readonly class PropertyDetailsService implements PropertyDetailsServiceContract
             ->indexByPropertyIds($propertyIds)
             ->toArray();
     }
+
+    public function getPropertyDetailsByPropertyId(int $propertyId): array
+    {
+        return $this->propertyDetailsRepository
+            ->getById($propertyId)
+            ->toArray();
+    }
 }

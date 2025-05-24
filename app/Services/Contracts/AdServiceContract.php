@@ -6,5 +6,7 @@ interface AdServiceContract
 {
     public function createAd(array $data): void;
 
-    public function getAdsFromCache(): array;
+    public function getAllAds(): array;
+
+    public function getAdByPropertyId(int $propertyId): array;
 }

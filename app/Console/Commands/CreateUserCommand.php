@@ -14,7 +14,7 @@ class CreateUserCommand extends Command
                             {email : E-mail do usuário}
                             {password : Senha do usuário}';
 
-    protected $description = 'Cria um novo usuário no sistema';
+    protected $description = 'Make a new user to system.';
 
     public function handle()
     {

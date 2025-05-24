@@ -25,7 +25,7 @@ class AdServiceProvider extends ServiceProvider
     public function boot(): array
     {
         return [
-          AdServiceContract::class
+            AdServiceContract::class
         ];
     }
 }

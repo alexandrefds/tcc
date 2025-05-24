@@ -9,19 +9,26 @@ use Illuminate\Database\Eloquent\Collection;
 class PropertyMediasRepository implements PropertyMediasRepositoryContract
 {
     public function __construct(
-        private PropertyMedia $propertyMedias
+        private PropertyMedia $model
     )
     {
     }
 
     public function store(array $data): void
     {
-        $this->propertyMedias->create($data);
+        $this->model->create($data);
     }
 
     public function index(): Collection
     {
-        return $this->propertyMedias
+        return $this->model
             ->get();
+    }
+
+    public function getById(int $propertyId): PropertyMedia
+    {
+        return $this->model
+            ->where('property_id', $propertyId)
+            ->first();
     }
 }

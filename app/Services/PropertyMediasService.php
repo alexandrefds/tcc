@@ -24,4 +24,11 @@ readonly class PropertyMediasService implements PropertyMediasServiceContract
             ->index()
             ->toArray();
     }
+
+    public function getPropertyMediasByPropertyId(int $propertyId): array
+    {
+        return $this->propertyMediasRepository
+            ->getById($propertyId)
+            ->toArray();
+    }
 }

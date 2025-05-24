@@ -7,7 +7,6 @@ use App\Services\Contracts\LocationServiceContract;
 use App\Services\Contracts\PropertyDetailsServiceContract;
 use App\Services\Contracts\PropertyMediasServiceContract;
 use App\Services\Contracts\PropertyServiceContract;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
 class AdService implements AdServiceContract
@@ -22,8 +21,8 @@ class AdService implements AdServiceContract
 
     public function __construct
     (
-        private readonly PropertyServiceContract        $propertyService,
-        private readonly LocationServiceContract        $locationService,
+        private readonly PropertyServiceContract $propertyService,
+        private readonly LocationServiceContract $locationService,
         private readonly PropertyDetailsServiceContract $propertyDetailsService,
         private readonly PropertyMediasServiceContract $propertyMediaService
     )
@@ -48,18 +47,25 @@ class AdService implements AdServiceContract
         $this->propertyMediaService->createPropertyMedias($medias);
     }
 
-    public function getAdsFromCache(): array
+    public function getAdByPropertyId(int $propertyId): array
     {
-        $cacheKey = 'ads';
-        $cachetTime = 1440;
+        $property = $this->propertyService->getPropertyById($propertyId);
 
-        return Cache::store('redis')
-            ->remember($cacheKey, $cachetTime, function () {
-                return $this->getAllAds();
-            });
+        $location = $this->locationService->getLocationByPropertyId($propertyId);
+
+        $details = $this->propertyDetailsService->getPropertyDetailsByPropertyId($propertyId);
+
+        $medias = $this->propertyMediaService->getPropertyMediasByPropertyId($propertyId);
+
+        return [
+            '$property'=> $property,
+            'location'=> $location,
+            'details' => $details,
+            'medias' => $medias,
+        ];
     }
 
-    private function getAllAds(): array
+    public function getAllAds(): array
     {
         $medias = $this->propertyMediaService->indexPropertyMedias();
 

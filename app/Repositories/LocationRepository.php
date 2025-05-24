@@ -23,4 +23,11 @@ readonly class LocationRepository implements LocationRepositoryContract
             ->whereIn('property_id', $propertyIds)
             ->get();
     }
+
+    public function getById(int $propertyId): Location
+    {
+        return $this->model
+            ->where('property_id', $propertyId)
+            ->first();
+    }
 }

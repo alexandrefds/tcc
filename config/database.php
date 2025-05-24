@@ -142,8 +142,9 @@ return [
     */
 
     'redis' => [
-
         'client' => env('REDIS_CLIENT', 'predis'),
+
+        'driver' => 'redis',
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
@@ -170,5 +171,4 @@ return [
         ],
 
     ],
-
 ];

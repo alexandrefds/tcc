@@ -25,4 +25,11 @@ readonly class PropertyService implements PropertyServiceContract
             ->indexByPropertyIds($propertyIds)
             ->toArray();
     }
+
+    public function getPropertyById(int $id): array
+    {
+        return $this->propertyRepository
+            ->getById($id)
+            ->toArray();
+    }
 }

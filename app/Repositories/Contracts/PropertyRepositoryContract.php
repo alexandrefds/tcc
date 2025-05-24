@@ -9,4 +9,6 @@ interface PropertyRepositoryContract
 {
     public function store(array $data): Property;
     public function indexByPropertyIds(array $propertyIds): Collection;
+
+    public function getById(int $id): Property;
 }

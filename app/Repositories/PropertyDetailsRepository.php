@@ -25,4 +25,11 @@ class PropertyDetailsRepository implements PropertyDetailsRepositoryContract
             ->whereIn('property_id', $propertyIds)
             ->get();
     }
+
+    public function getById(int $propertyId): PropertyDetail
+    {
+        return $this->model
+            ->where('property_id', $propertyId)
+            ->first();
+    }
 }
